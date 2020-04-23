@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="ServletReservation" method="post">
+	<form action="ServletReservation" method="get">
 	  <input type="submit" value="Voir mes reservations"/>
 	</form>
 <div class="container">
@@ -16,7 +16,7 @@
 	     <tr>
 	       <th>id_client</th><th>nom</th><th>prenom</th><th>immatricule</th><th>modele</th><th>categorie</th><th>email</th><th>datelocation</th><th>dateretour</th><th>telephone</th><th>prix</th>
 	     </tr>
-	     <c:forEach items="${reserv.reservationClients}" var="r">
+	     <c:forEach items="${reserv.reserv}" var="r">
 	         <tr>
 	             <td>${r.id_client}</td>
 	             <td>${r.nom}</td>

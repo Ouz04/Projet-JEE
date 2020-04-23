@@ -15,6 +15,7 @@ import requetes.VehiculeConnect;
 public class ClientVehicule implements Clientele {
 	public void addClient(Client c) {
         // TODO Auto-generated method stub
+		System.out.println("add client");
         Connection cn=VehiculeConnect.getConnection();
         try {
             PreparedStatement ps=cn.prepareStatement("insert into client (nom,prenom,adresse,telephone,email,identite,numpermi,datelocation,dateretour) values (?,?,?,?,?,?,?,?,?)");

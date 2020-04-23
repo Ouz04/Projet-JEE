@@ -6,10 +6,20 @@ public class Reservation {
 	
 	
 
-	   private String immatricule,nom,prenom,modele,categorie,datelocation,dateretour;
+	   private String immatricule,nom,prenom,modele,categorie,datelocation,dateretour,email;
 	    private int id_client,telephone;
 	    private float prix;
 	
+
+	public String getEmail() {
+			return email;
+		}
+
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+
 
 	public Reservation() {
 		super();

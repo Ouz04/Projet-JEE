@@ -21,7 +21,7 @@ import model.Catalogue;
 /**
  * Servlet implementation class ServletClient
  */
-@WebServlet("/ServletClient")
+
 public class ServletClient extends HttpServlet {
 	
 	private static final long serialVersionUID = 1L;
@@ -76,7 +76,8 @@ public class ServletClient extends HttpServlet {
             
         //    request.setAttribute("client", cliente.getClient(1));
             
-            request.getRequestDispatcher("client.jsp").
+            //request.getRequestDispatcher("client.jsp").
+            request.getRequestDispatcher("listereservation.jsp").
             forward(request,response);
             
 

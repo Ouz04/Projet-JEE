@@ -20,7 +20,7 @@ import model.Catalogue;
 import model.CatalogueVehicule;
 import model.Vehicule;
 
-@WebServlet("/ServletVehicule")
+
 public class ServletVehicule extends HttpServlet {
     /**
 	 * 

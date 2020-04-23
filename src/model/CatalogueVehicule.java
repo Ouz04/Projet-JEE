@@ -207,14 +207,17 @@ public class CatalogueVehicule implements Catalogue {
 
 public List<Reservation> listReservationsClient(int idClient)
 {
-	System.out.println("je sui id_client "+idClient);
+	System.out.println("je sui Le client "+idClient);
     List<Reservation> reserv=new ArrayList<Reservation>();
     Connection cn=VehiculeConnect.getConnection();
     try {
-        PreparedStatement ps=cn.prepareStatement("SELECT c.id_client,nom,prenom,modele,categorie,v.immatricule,datelocation,dateretour,telephone,prix FROM client c, vehicule v, loue l WHERE c.id_client = l.id_client and v.immatricule=l.immatricule and c.id_client=?");
+        PreparedStatement ps=cn.prepareStatement("SELECT c.id_client,nom,prenom,modele,email,categorie,v.immatricule,datelocation,dateretour,telephone,prix "
+        										+ "FROM client c, vehicule v, louer l "
+        										+ "WHERE c.id_client = l.id_client and v.immatricule=l.immatricule and c.id_client=?");
         ps.setInt(1, idClient);
         ResultSet rs=ps.executeQuery();
         while(rs.next()) {
+        	System.out.println("je sui Le client "+idClient);
             Reservation vh=new Reservation();
             vh.setCategorie(rs.getString("categorie"));
             vh.setModele(rs.getString("modele"));
@@ -226,6 +229,7 @@ public List<Reservation> listReservationsClient(int idClient)
             vh.setDateretour(rs.getString("dateretour"));
             vh.setTelephone(rs.getInt("telephone"));
             vh.setPrix(rs.getFloat("Prix"));
+            vh.setEmail(rs.getString("email"));
       
        System.out.println(vh.toString());
        

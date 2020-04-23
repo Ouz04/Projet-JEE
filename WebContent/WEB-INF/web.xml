@@ -25,4 +25,13 @@
   <servlet-name>ServletVehicule</servlet-name>
   <url-pattern>/ServletVehicule</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+	  <servlet-name>ServletClient</servlet-name>
+	  <servlet-class>controller.ServletClient</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>ServletClient</servlet-name>
+  <url-pattern>/ServletClient</url-pattern>
+  </servlet-mapping>
 </web-app>
