@@ -15,7 +15,7 @@
   </servlet>
   <servlet-mapping>
   <servlet-name>ServletReservation</servlet-name>
-  <url-pattern>/Reservation</url-pattern>
+  <url-pattern>/ServletReservation</url-pattern>
   </servlet-mapping>
   <servlet>
   <servlet-name>ServletVehicule</servlet-name>

@@ -114,13 +114,11 @@
 		                  <td></td>
 		                  <td align="center">
 		                     <br />
-		                     <input type="submit"  value="Valider ma reservation"/>
+		                     <a href="listereservation.jsp"> <input type=button  value="Valider ma reservation"/></a>
 		                  </td>
 		             </tr>
             </table>
-  <div>
-     <button href="listereservation.jsp">Voir</button>     
-  </div>
+ 
   
   
  </form>

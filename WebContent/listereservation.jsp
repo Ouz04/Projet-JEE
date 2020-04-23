@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,26 +8,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<div>
-<table border="double">
-     <tr>
-       <th>id_client</th><th>nom</th><th>immatricule</th>><th>modele</th><th>categorie</th><th>nbreplace</th><th>prix</th>
-     </tr>
-     <c:forEach items="${mode.listReservations}" var="v">
+	<form action="ServletReservation" method="post">
+	  <input type="submit" value="Voir mes reservations"/>
+	</form>
+<div class="container">
+	<table border="double">
 	     <tr>
-		     <td>${v.id_client}</td>
-		     <td>${v.nom}</td>
-		     <td>${v.immatricule}</td>
-		     <td>${v.modele}</td>
-		     <td>${v.categorie}</td>
-		     <td>${v.nbreplace}</td>		     
-		     <td>${v.prix}</td>
-		    
+	       <th>id_client</th><th>nom</th><th>prenom</th><th>immatricule</th><th>modele</th><th>categorie</th><th>email</th><th>datelocation</th><th>dateretour</th><th>telephone</th><th>prix</th>
 	     </tr>
-     </c:forEach>
-</table>
+	     <c:forEach items="${reserv.reservationClients}" var="r">
+	         <tr>
+	             <td>${r.id_client}</td>
+	             <td>${r.nom}</td>
+	             <td>${r.prenom}</td>
+	             <td>${r.immatricule}</td>
+	             <td>${r.modele}</td>
+	             <td>${r.categorie}</td>
+	             <td>${r.email}</td>
+	             <td>${r.datelocation}</td>
+	             <td>${r.dateretour}</td>
+	             <td>${r.telephone}</td>             
+	             <td>${r.prix}</td>
+	            
+	         </tr>
+	     </c:forEach>
+	</table>
 </div>
+
+ 
 
 </body>
 </html>

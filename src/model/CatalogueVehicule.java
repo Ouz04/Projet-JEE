@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -60,7 +59,7 @@ public class CatalogueVehicule implements Catalogue {
 		 List<Vehicule> vehi=new ArrayList<Vehicule>();
 	        Connection cn=VehiculeConnect.getConnection();
 	        try {
-	            PreparedStatement ps=cn.prepareStatement("select immatricule,categorie,modele,nbreplace,prix from vehicule where modele like ?");
+	            PreparedStatement ps=cn.prepareStatement("select * from vehicule where modele like ?");
 	            ps.setString(1, "%"+mc+"%");
 	            ResultSet rs=ps.executeQuery();
 	            while(rs.next()) {
@@ -152,9 +151,9 @@ public class CatalogueVehicule implements Catalogue {
 		Connection cn=VehiculeConnect.getConnection();
         try {
             PreparedStatement ps=cn.prepareStatement("insert into louer (immatricule,id_client) values (?,?)");
-           System.out.println(r.getIdClient());
+           System.out.println(r.getId_client());
             ps.setString(1,  r.getImmatricule());
-            ps.setInt(2,  r.getIdClient());
+            ps.setInt(2,  r.getId_client());
  
             ps.executeUpdate();
             ps.close();
@@ -166,34 +165,80 @@ public class CatalogueVehicule implements Catalogue {
 	}
     
     
-    public List<Reservation> listReservations()
-    {
-    	List<Reservation> reserv=new ArrayList<Reservation>();
-        Connection cn=VehiculeConnect.getConnection();
-        try {
-            PreparedStatement ps=cn.prepareStatement("SELECT nom,prenom,modele,categorie FROM client c, vehicule v, louer l WHERE c.id_client = l.id_client and v.immatricule=l.immatricule");
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()) {
-            	Reservation vh=new Reservation();
-            	vh.setCategorie(rs.getString("categorie"));
-            	vh.setModele(rs.getString("modele"));
-            	vh.setNom(rs.getString("nom"));
-            	vh.setIdClient(rs.getInt("id_client"));
-            
+	 public List<Reservation> listReservations()
+	    {
+	        List<Reservation> reserv=new ArrayList<Reservation>();
+	        Connection cn=VehiculeConnect.getConnection();
+	        try {
+	            PreparedStatement ps=cn.prepareStatement("SELECT c.id_client,nom,prenom,modele,categorie,v.immatricule,datelocation,dateretour,telephone,prix FROM client c, vehicule v, loue l WHERE c.id_client = l.id_client and v.immatricule=l.immatricule");
+	            ResultSet rs=ps.executeQuery();
+	            while(rs.next()) {
+	                Reservation vh=new Reservation();
+	                vh.setCategorie(rs.getString("categorie"));
+	                vh.setModele(rs.getString("modele"));
+	                vh.setNom(rs.getString("nom"));
+	                vh.setPrenom(rs.getString("prenom"));
+	                vh.setId_client(rs.getInt("id_client"));
+	                vh.setImmatricule(rs.getString("immatricule"));
+	                vh.setDatelocation(rs.getString("datelocation"));
+	                vh.setDateretour(rs.getString("dateretour"));
+	                vh.setTelephone(rs.getInt("telephone"));
+	                vh.setPrix(rs.getFloat("Prix"));
+	          
+	           System.out.println(vh.toString());
+	           
+	            reserv.add(vh);
+	            }
+	            ps.close();
+	          
+	        } catch (SQLException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	       return reserv;
+	       
+	    }
+
+
+
+
+
+
+
+public List<Reservation> listReservationsClient(int idClient)
+{
+	System.out.println("je sui id_client "+idClient);
+    List<Reservation> reserv=new ArrayList<Reservation>();
+    Connection cn=VehiculeConnect.getConnection();
+    try {
+        PreparedStatement ps=cn.prepareStatement("SELECT c.id_client,nom,prenom,modele,categorie,v.immatricule,datelocation,dateretour,telephone,prix FROM client c, vehicule v, loue l WHERE c.id_client = l.id_client and v.immatricule=l.immatricule and c.id_client=?");
+        ps.setInt(1, idClient);
+        ResultSet rs=ps.executeQuery();
+        while(rs.next()) {
+            Reservation vh=new Reservation();
+            vh.setCategorie(rs.getString("categorie"));
+            vh.setModele(rs.getString("modele"));
+            vh.setNom(rs.getString("nom"));
+            vh.setPrenom(rs.getString("prenom"));
+            vh.setId_client(rs.getInt("id_client"));
             vh.setImmatricule(rs.getString("immatricule"));
-           
-           
-            
-            reserv.add(vh);
-            }
-            ps.close();
-           
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            vh.setDatelocation(rs.getString("datelocation"));
+            vh.setDateretour(rs.getString("dateretour"));
+            vh.setTelephone(rs.getInt("telephone"));
+            vh.setPrix(rs.getFloat("Prix"));
+      
+       System.out.println(vh.toString());
+       
+        reserv.add(vh);
         }
-       return reserv;
-    	
+        ps.close();
+      
+    } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
     }
+   return reserv;
+   
+}
 
 }

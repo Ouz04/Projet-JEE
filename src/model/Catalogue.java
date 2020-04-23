@@ -13,6 +13,7 @@ public interface Catalogue {
 	    public void addReservation(Reservation r);
 	   
 	    public List<Reservation> listReservations();
+	    public List<Reservation>listReservationsClient(int idClient);
 		
 
 }

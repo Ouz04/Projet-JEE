@@ -6,8 +6,9 @@ public class Reservation {
 	
 	
 
-	private String immatricule,nom,modele,categorie;
-	private int idClient;
+	   private String immatricule,nom,prenom,modele,categorie,datelocation,dateretour;
+	    private int id_client,telephone;
+	    private float prix;
 	
 
 	public Reservation() {
@@ -15,11 +16,27 @@ public class Reservation {
 	}
 
 
-	public Reservation(String immatricule,  int idClient) {
+	public Reservation(String immatricule,  int id_client) {
 		super();
 		this.immatricule = immatricule;
 		
-		this.idClient = idClient;
+		this.id_client = id_client;
+	}
+
+
+	/**
+	 * @return the immatricule
+	 */
+	public String getImmatricule() {
+		return immatricule;
+	}
+
+
+	/**
+	 * @param immatricule the immatricule to set
+	 */
+	public void setImmatricule(String immatricule) {
+		this.immatricule = immatricule;
 	}
 
 
@@ -36,6 +53,22 @@ public class Reservation {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+
+	/**
+	 * @return the prenom
+	 */
+	public String getPrenom() {
+		return prenom;
+	}
+
+
+	/**
+	 * @param prenom the prenom to set
+	 */
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 
 
@@ -72,43 +105,84 @@ public class Reservation {
 
 
 	/**
-	 * @return the idClient
+	 * @return the datelocation
 	 */
-	public int getIdClient() {
-		return idClient;
+	public String getDatelocation() {
+		return datelocation;
 	}
 
 
 	/**
-	 * @param idClient the idClient to set
+	 * @param datelocation the datelocation to set
 	 */
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
-	}
-
-	/**
-	 * @return the immatricule
-	 */
-	public String getImmatricule() {
-		return immatricule;
+	public void setDatelocation(String datelocation) {
+		this.datelocation = datelocation;
 	}
 
 
 	/**
-	 * @param immatricule the immatricule to set
+	 * @return the dateretour
 	 */
-	public void setImmatricule(String immatricule) {
-		this.immatricule = immatricule;
+	public String getDateretour() {
+		return dateretour;
 	}
 
 
+	/**
+	 * @param dateretour the dateretour to set
+	 */
+	public void setDateretour(String dateretour) {
+		this.dateretour = dateretour;
+	}
 
 
-	
+	/**
+	 * @return the id_client
+	 */
+	public int getId_client() {
+		return id_client;
+	}
 
 
-	
-	
-	
+	/**
+	 * @param id_client the id_client to set
+	 */
+	public void setId_client(int id_client) {
+		this.id_client = id_client;
+	}
+
+
+	/**
+	 * @return the telephone
+	 */
+	public int getTelephone() {
+		return telephone;
+	}
+
+
+	/**
+	 * @param telephone the telephone to set
+	 */
+	public void setTelephone(int telephone) {
+		this.telephone = telephone;
+	}
+
+
+	/**
+	 * @return the prix
+	 */
+	public float getPrix() {
+		return prix;
+	}
+
+
+	/**
+	 * @param prix the prix to set
+	 */
+	public void setPrix(float prix) {
+		this.prix = prix;
+	}
+
+
 	
 }

@@ -10,6 +10,7 @@ import  java.util.Calendar;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,7 @@ import model.Catalogue;
 import model.CatalogueVehicule;
 import model.Vehicule;
 
-
+@WebServlet("/ServletVehicule")
 public class ServletVehicule extends HttpServlet {
     /**
 	 * 
@@ -69,17 +70,15 @@ public class ServletVehicule extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        VehiculeModele Model=new VehiculeModele();
-        
-        Model.setMotCle(request.getParameter("motCle"));
-        
-        
-        List<Vehicule> vehicules=modele.VehiculesParMC(Model.getMotCle());
-        System.out.println(Model.getMotCle());
-        Model.setVehicules(vehicules);
-        request.setAttribute("mode", Model);
-        
-        request.getRequestDispatcher("reserver.jsp").forward(request,response);
+        VehiculeModele model=new VehiculeModele();
+        model.setMotCle(request.getParameter("motCle"));
+        List<Vehicule> vehicules= modele.VehiculesParMC(model.getMotCle());
+        System.out.println(model.getMotCle());
+        model.setVehicules(vehicules);
+        request.setAttribute("mode", model);
+       
+        request.getRequestDispatcher("reserver.jsp").
+        forward(request,response);
  
     }
 }

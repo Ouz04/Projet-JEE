@@ -2,6 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,12 +16,14 @@ import model.CatalogueVehicule;
 import model.Client;
 import model.ClientVehicule;
 import model.Reservation;
+import model.Catalogue;
 
 /**
  * Servlet implementation class ServletClient
  */
 @WebServlet("/ServletClient")
 public class ServletClient extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -59,10 +63,13 @@ public class ServletClient extends HttpServlet {
             cliente.addClient(client);
             Client c = cliente.getClientbyEmail(client.getEmail());
             HttpSession session = request.getSession();
+            session.setAttribute("idClient", c.getId_client());
+            
             System.out.println(c.getId_client());
             String matricule = request.getParameter("matricule");
             CatalogueVehicule cat = new CatalogueVehicule();
             cat.addReservation(new Reservation(matricule,c.getId_client()));
+            
             
             
             
