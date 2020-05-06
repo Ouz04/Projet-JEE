@@ -2,8 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,17 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import model.Catalogue;
 import model.CatalogueVehicule;
 import model.Reservation;
 
 /**
- * Servlet implementation class ContReservation
+ * Servlet implementation class ServletListeReservation
  */
-
-public class ServletReservation extends HttpServlet {
-   	private Catalogue liste;
+@WebServlet("/ServletListeReservation")
+public class ServletListeReservation extends HttpServlet {
+ 	private Catalogue liste;
 	private static final long serialVersionUID = 1L;
 	  private Catalogue modele;
 	   private Catalogue catalogue;
@@ -40,13 +37,13 @@ public class ServletReservation extends HttpServlet {
 	        ReservationModele reserve=new ReservationModele();
 	        CatalogueVehicule cat = new CatalogueVehicule();
 	        //List<Reservation> reservations=catalogue.listReservations();
-	        HttpSession session = request.getSession();
-	        int idClient =(int) session.getAttribute("idClient");
-	        System.out.println("je suis lid du client "+idClient);
-	        List<Reservation> reservationClients = cat.listReservationsClient(idClient);        
-	        reserve.setReserv(reservationClients);//essaye pour voir apre
+	       // HttpSession session = request.getSession();
+	       // int idClient =(int) session.getAttribute("idClient");
+	      //  System.out.println("je suis lid du client "+idClient);
+	        List<Reservation> reservation = cat.listReservations();        
+	        reserve.setReserv(reservation);//essaye pour voir apre
 	        request.setAttribute("reserv", reserve);
-		request.getRequestDispatcher("listereservation.jsp").
+		request.getRequestDispatcher("/Administrateur/listetoutereservation.jsp").
         forward(request,response);
 	}
 	
@@ -63,6 +60,6 @@ public class ServletReservation extends HttpServlet {
         	String id_client=request.getParameter("id_client");
         	modele.deleteVehicule("id_client");
         }
-        request.getRequestDispatcher("listereservation.jsp").forward(request,response);
+        request.getRequestDispatcher("/Administrateur/listereservation.jsp").forward(request,response);
 	}
 }

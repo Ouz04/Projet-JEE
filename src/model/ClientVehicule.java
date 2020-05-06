@@ -42,7 +42,7 @@ public class ClientVehicule implements Clientele {
         List<Client> cli=new ArrayList<Client>();
         Connection cn=VehiculeConnect.getConnection();
         try {
-            PreparedStatement ps=cn.prepareStatement("select * from vehicule");
+            PreparedStatement ps=cn.prepareStatement("select * from client");
             ResultSet rs=ps.executeQuery();
             while(rs.next()) {
                 Client c=new Client();

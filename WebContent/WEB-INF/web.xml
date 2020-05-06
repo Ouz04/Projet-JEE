@@ -34,4 +34,43 @@
   <servlet-name>ServletClient</servlet-name>
   <url-pattern>/ServletClient</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+	  <servlet-name>ServletGestionVehicule</servlet-name>
+	  <servlet-class>controller.ServletGestionVehicule</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>ServletGestionVehicule</servlet-name>
+  <url-pattern>/Administrateur/ServletGestionVehicule</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+	  <servlet-name>ServletListeVehicule</servlet-name>
+	  <servlet-class>controller.ServletListeVehicule</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>ServletListeVehicule</servlet-name>
+  <url-pattern>/Administrateur/ServletListeVehicule</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	  <servlet-name>ServletListeReservation</servlet-name>
+	  <servlet-class>controller.ServletListeReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>ServletListeReservation</servlet-name>
+  <url-pattern>/Administrateur/ServletListeReservation</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	  <servlet-name>ServletListeClient</servlet-name>
+	  <servlet-class>controller.ServletListeClient</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>ServletListeClient</servlet-name>
+  <url-pattern>/Administrateur/ServletListeClient</url-pattern>
+  </servlet-mapping>
+  
+  
+
 </web-app>

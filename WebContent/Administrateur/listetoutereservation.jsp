@@ -8,8 +8,10 @@
 <title>Mes reservations</title>
 </head>
 <body>
-	<form action="ServletReservation" method="get">
-	  <input type="submit" value="Voir mes reservations"/>
+	<form action="ServletListeReservation" method="get">
+	  <input type="submit" value="Voir toutes les reservations"/>
+	  <a href="listevehicule.jsp"><input type="button" value="liste des véhicules"></a>
+   <a href="listeclient.jsp"><input type="button" value="liste des clients"></a>
 	</form><br>
 <div class="container">
 	<table border="double">
@@ -29,11 +31,11 @@
 	             <td>${r.dateretour}</td>
 	             <td>${r.telephone}</td>             
 	             <td>${r.prix}</td>
-	             
+	             <td><a href="ServletListeReservation.php?action=delete&id_client=${r.id_client}">Supprimer</a></td>
 	         </tr>
 	     </c:forEach>
 	</table><br><br>
-	<a href="reserver.jsp"> <input type=button  value="Effectuer une reservation"/></a>
+	
 </div>
 
  

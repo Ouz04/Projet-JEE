@@ -14,6 +14,7 @@ public interface Catalogue {
 	   
 	    public List<Reservation> listReservations();
 	    public List<Reservation> listReservationsClient(int idClient);
+	    public void deleteReservation(int id_client);
 		
 
 }

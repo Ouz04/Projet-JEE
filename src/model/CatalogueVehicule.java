@@ -15,12 +15,12 @@ public class CatalogueVehicule implements Catalogue {
 		// TODO Auto-generated method stub
 		Connection cn=VehiculeConnect.getConnection();
         try {
-            PreparedStatement ps=cn.prepareStatement("insert into vehicule (immatricule,categorie,modele,nbreplace,prix) values (?,?,?,?,?)");
+            PreparedStatement ps=cn.prepareStatement("insert into vehicule (immatricule,modele,categorie,nbreplace,prix) values (?,?,?,?,?)");
             ps.setString(1, v.getImmatricule());
             ps.setString(2, v.getModele());
             ps.setString(3, v.getCategorie());
             ps.setInt(4, v.getNbreplace());
-            ps.setFloat(5, v.getPrix());
+            ps.setDouble(5, v.getPrix());
            
             ps.executeUpdate();
             ps.close();
@@ -42,7 +42,7 @@ public class CatalogueVehicule implements Catalogue {
             vh.setModele(rs.getString("modele"));
             vh.setCategorie(rs.getString("categorie"));
             vh.setNbreplace(rs.getInt("nbreplace"));
-            vh.setPrix(rs.getFloat("prix"));
+            vh.setPrix(rs.getDouble("prix"));
             
             vehi.add(vh);
             }
@@ -68,7 +68,7 @@ public class CatalogueVehicule implements Catalogue {
 	            vh.setModele(rs.getString("modele"));
 	            vh.setCategorie(rs.getString("categorie"));
 	            vh.setNbreplace(rs.getInt("nbreplace"));
-	            vh.setPrix(rs.getFloat("prix"));
+	            vh.setPrix(rs.getDouble("prix"));
 	            
 	            vehi.add(vh);
 	            }
@@ -119,7 +119,7 @@ public class CatalogueVehicule implements Catalogue {
             ps.setString(2, v.getModele());
             ps.setString(1, v.getCategorie());
             ps.setInt(3, v.getNbreplace());
-            ps.setFloat(4, v.getPrix());
+            ps.setDouble(4, v.getPrix());
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -150,7 +150,7 @@ public class CatalogueVehicule implements Catalogue {
 		
 		Connection cn=VehiculeConnect.getConnection();
         try {
-            PreparedStatement ps=cn.prepareStatement("insert into louer (immatricule,id_client) values (?,?)");
+            PreparedStatement ps=cn.prepareStatement("insert into loue (immatricule,id_client) values (?,?)");
            System.out.println(r.getId_client());
             ps.setString(1,  r.getImmatricule());
             ps.setInt(2,  r.getId_client());
@@ -170,7 +170,7 @@ public class CatalogueVehicule implements Catalogue {
 	        List<Reservation> reserv=new ArrayList<Reservation>();
 	        Connection cn=VehiculeConnect.getConnection();
 	        try {
-	            PreparedStatement ps=cn.prepareStatement("SELECT c.id_client,nom,prenom,modele,categorie,v.immatricule,datelocation,dateretour,telephone,prix FROM client c, vehicule v, loue l WHERE c.id_client = l.id_client and v.immatricule=l.immatricule");
+	            PreparedStatement ps=cn.prepareStatement("SELECT c.id_client,nom,email,prenom,modele,categorie,v.immatricule,datelocation,dateretour,telephone,prix FROM client c, vehicule v, loue l WHERE c.id_client = l.id_client and v.immatricule=l.immatricule");
 	            ResultSet rs=ps.executeQuery();
 	            while(rs.next()) {
 	                Reservation vh=new Reservation();
@@ -184,6 +184,7 @@ public class CatalogueVehicule implements Catalogue {
 	                vh.setDateretour(rs.getString("dateretour"));
 	                vh.setTelephone(rs.getInt("telephone"));
 	                vh.setPrix(rs.getFloat("Prix"));
+	                vh.setEmail(rs.getString("email"));
 	          
 	           System.out.println(vh.toString());
 	           
@@ -212,7 +213,7 @@ public List<Reservation> listReservationsClient(int idClient)
     Connection cn=VehiculeConnect.getConnection();
     try {
         PreparedStatement ps=cn.prepareStatement("SELECT c.id_client,nom,prenom,modele,email,categorie,v.immatricule,datelocation,dateretour,telephone,prix "
-        										+ "FROM client c, vehicule v, louer l "
+        										+ "FROM client c, vehicule v, loue l "
         										+ "WHERE c.id_client = l.id_client and v.immatricule=l.immatricule and c.id_client=?");
         ps.setInt(1, idClient);
         ResultSet rs=ps.executeQuery();
@@ -243,6 +244,22 @@ public List<Reservation> listReservationsClient(int idClient)
     }
    return reserv;
    
+}
+
+public void deleteReservation(int id_client) {
+	// TODO Auto-generated method stub
+	Connection cn=VehiculeConnect.getConnection();
+    try {
+        PreparedStatement ps=cn.prepareStatement("delete vehicule,client where id_client=?");
+        ps.setInt(1, id_client);
+       
+        ps.executeUpdate();
+        ps.close();
+    } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+
 }
 
 }

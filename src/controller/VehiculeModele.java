@@ -7,80 +7,48 @@ import java.util.List;
 import model.Vehicule;
 
 public class VehiculeModele {
-    private String datelocation;
-    private String dateretour;
-    private String modele;
-    private String motCle;
-    private String categorie;
-    private int nbreplace;
+	private String motCle;
+    private Vehicule vehicule=new Vehicule();
     private List<Vehicule> vehicules=new ArrayList<Vehicule>();
+    private String error;
+    
     public VehiculeModele() {
         // TODO Auto-generated constructor stub
         
     }
-    
 
-    /**
-	 * @return the motCle
-	 */
 	public String getMotCle() {
 		return motCle;
 	}
 
-
-	/**
-	 * @param motCle the motCle to set
-	 */
 	public void setMotCle(String motCle) {
 		this.motCle = motCle;
 	}
 
+	public List<Vehicule> getVehicules() {
+		return vehicules;
+	}
 
-	public String getDatelocation() {
-        return datelocation;
-    }
+	public void setVehicules(List<Vehicule> vehicules) {
+		this.vehicules = vehicules;
+	}
 
-    public void setDatelocation(String datelocation) {
-        this.datelocation = datelocation;
-    }
+	public Vehicule getVehicule() {
+		return vehicule;
+	}
 
-   public String getDateretour() {
-        return dateretour;
-    }
+	public void setVehicule(Vehicule vehicule) {
+		this.vehicule = vehicule;
+	}
 
-    public void setDateretour(String dateretour) {
-        this.dateretour = dateretour;
-    }
+	public String getError() {
+		return error;
+	}
 
-    public String getModele() {
-        return modele;
-    }
+	public void setError(String error) {
+		this.error = error;
+	}
     
-   public void setModele(String modele) {
-        this.modele = modele;
-    }
-
-    public String getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
-    }
-
-    public int getNbreplace() {
-        return nbreplace;
-    }
-
-    public void setNbreplace(int nbreplace) {
-        this.nbreplace = nbreplace;
-    }
-
-    public List<Vehicule> getVehicules() {
-        return vehicules;
-    }
-
-    public void setVehicules(List<Vehicule> vehicules) {
-        this.vehicules = vehicules;
-    }
+    
+    
 }
